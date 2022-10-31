@@ -1,0 +1,88 @@
+初始化版本库  ----  git init
+创建系统用户  ----  git config --system user.name "用户名"
+             ----  git config --system suer.email "邮箱"　
+查看系统用户信息  ----  git config --system --list
+创建全局用户  ----  git config --global user.name "用户名"
+             ---- git config --global suer.email "邮箱"
+查看全局用户信息  ----  git config --global --list
+创建本地库用户  ----  git config user.name "用户名"
+               ----  git config user.email "邮箱"
+查看本地库用户信息  ----  git config --list
+
+
+
+Git 基本操作
+新建文件  ----  echo "内容" > 文件名
+查看版本库状态  ----  git status
+添加管理  ----  git add 文件名
+添加多个文件  ----  git add 
+提交操作  ----  git commit       //提交时必须通过-m给出操作提示信息
+忽略文件  ----  将文件添加到.gitignore
+          ----  echo "文件名" > .gitignore    
+查看工作区与暂存区区别  ----  git diff 
+查看暂存区与本地库区别  ----  git diff --cached 
+撤销修改（仅在工作区修改）  ----  git checkout --
+撤销修改（在暂存区）  ----  git reset HEAD
+查看历史版本  ----  git log
+查看简单形式的日志  ----  git log --pretty=oneline
+                   ----  git log --pretty=oneline --abbrev-commit
+翻页与退出（回车：显示下一行
+          空格：显示下一页
+          q:退出git log命令）
+HEAD指针（HEAD^表示当前版本的前一个版本，HEAD^^表示当前版本的前2个版本，也可以用~加数字表示当前版本之前的第几版）
+查看可引用历史版本  ----  git reflog
+版本回退(仅修改HEASD位置)  ----  git reset --soft
+                                git reset --soft HEAD^(回退到当前版本的前一个版本)
+回退到指定版本（不仅修改HEAD指针位置，暂存区数据页回到指定版本，但工作区仍是回退前的版本）  ----  git reset -mixed
+恢复回退之前版本  ---- git reset --mixed 版本号
+回退到指定版本（不仅修改iHEAD指针位置，还将工作区，暂存区和本地库数据回退到指定位置）  ----  git reset --hard
+恢复回退之前版本  ----  git reset --hard 版本号
+查看暂存区文件列表  ----  git ls-files 
+查看本地库文件列表(指针指向HEAD节点的文件)  ----  git ls-files --with-tree=HEAD
+删除（仅删除暂存区）  ----    git rm --cached
+恢复删除文件  ----  git reset HEAD
+完全删除（将工作区，暂存区一次完全删除  ----  git rm
+删除本地库直接commit提交即可
+恢复被删除的文件()  ----  git checkout --
+创建并切换分支  ----  git checkout -b 分支名称
+新建分支  ----   git branch 分支名
+切换分支  ----  git checkout 分支名
+查看系统分支  ----  git brancd
+删除分支(当前分支不能是要被删除的分支)  ----  git branch -d
+合并分支(如果将分支B合并到A，当前分支为A)  ----  git merge
+解决冲突的方法就是手工修改内容，然后add添加并commit提交。
+查看历史版本中的合并显示  ----  git log --pretty=oneline --graph
+
+
+GitHub
+为指定一个远程版本库命名一个本地名称  ----  git remote add 
+将本地版本库中当前分支推送到origin远程版本库  ----  git push origin
+将本地版本库中master分支推送到origin远程库  ----  git push origin master
+将本地版本库master分支推送到origin远程版本库，并将origin设置为默认的远程库（即以后所有git push就不用再指定远程版本库了）  ----  git push -u origin
+将本地版本库中当前分支推送到默认远程库  ----  git push
+从远程库clone内容到本地库 ----  git clone github地址
+将修改内容push到远程库  ----  git push  
+（若不是一台主机测是一下两条命令  ----  git remote add origin github地址
+                               ----  git push -u origin master）
+git pull origin master  将远程库origin的master分支拉取到本地库与本地库的master分支合并
+git pull origin master:dev   将远程库origin的master分支拉取到本地并与本地的dev分支合并
+git pull   从默认远程库的拉取本地库当前分支内容，并与本地库当前分支合并
+列举出当前本地版本库可操作的远程版本库名称  ----  git remote 
+(git remote -v   该命令可以显示更为详细的信息)
+删除本地远程库信息  ----  git remote rm 远程库名称
+
+
+定义轻量标签  ----  git tag 标签 commit-id  （绑定标签与commit-id，若不指定标签绑定的commit-id，则默认为HEAD指定所指向的版本所以该命令后的commit-id可以省略不写）
+定义附注标签  ----  git tag -a 附注标签名 -m "附注" commit-id  (-a 指定标签名。-m 设置标签说明)
+查看所有标签  ----  git tag （查看当前系统下所有标签，输出顺序为字母顺序）
+查看标签详情  ----  git show 标签名称 （具有说明的标签会显示说明，没有说明的无显示）
+推送指定标签到远程库  ----  git push origin（库名） 标签名称
+推送所有标签到远程库  ----  git push origin（库名） --tags  (将所有未推送的标签全部推送到远程库)
+删除本地标签  ----  git tag -d 标签名
+删除远程标签  ----  git push origin :refs/tags/标签名  (要删除远程标签，首先删除本地库标签，再运行命令)
+
+
+码云gitee
+
+
+
